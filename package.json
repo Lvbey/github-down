@@ -1,0 +1,24 @@
+{
+  "name": "github-down",
+  "version": "1.0.0",
+  "description": "",
+  "main": "download.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lvbey/github-down.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lvbey/github-down/issues"
+  },
+  "homepage": "https://github.com/Lvbey/github-down#readme",
+  "dependencies": {
+    "node-fetch": "^2.7.0",
+    "nodemailer": "^7.0.3",
+    "progress-stream": "^2.0.0"
+  }
+}

@@ -40,6 +40,7 @@ const fileStream = fs.createWriteStream(tmpFileSavePath).on('error', function (e
         {
             let chunk = readstream.read(attachmentMaxSize);
             while (null !== chunk) {
+                console.log('read times:'+patchIndex)
                 patchIndex = patchIndex + 1;
                 // console.log('read times:'+patchIndex)
                 // console.log(fileSavePath+'.email_'+patchIndex);
@@ -50,7 +51,7 @@ const fileStream = fs.createWriteStream(tmpFileSavePath).on('error', function (e
                 emailFile.end();
                 
                 attachments.push({
-                    filename: patchIndex+'_'+path.basename(fileURL),
+                    filename: patchIndex+'_'+basename,
                     path: emailFilePath,
                 });
 
@@ -63,8 +64,8 @@ const fileStream = fs.createWriteStream(tmpFileSavePath).on('error', function (e
         if(attachments.length > 1)
         {
             attachments.push({
-                filename: '文件分割合并器(SplitMergeFile).exe',
-                path: path.join(__dirname, 'SplitMergeFile.exe')
+                filename: basename,
+                path: path.join(__dirname, basename)
             });
         }
         let sendIndex = 1;
@@ -92,8 +93,8 @@ const fileStream = fs.createWriteStream(tmpFileSavePath).on('error', function (e
 });
 
 var sendEmail = function(sendFiles,patchIndex,total){
-    let msg = createEmailMessage(path.basename(fileURL) + '_Part' + patchIndex + '/' + total, sendFiles);
-    console.log('Send Mail Part_' + patchIndex + '/' + total + '   ' + path.basename(fileURL));
+    let msg = createEmailMessage(basename + '_Part' + patchIndex + '/' + total, sendFiles);
+    console.log('Send Mail Part_' + patchIndex + '/' + total + '   ' + basename);
     var i;
     for(i = 0; i < msg.attachments.length; i++)
     {
@@ -106,7 +107,7 @@ var sendEmail = function(sendFiles,patchIndex,total){
             console.log(error.message);
             return;
         }
-        console.log(path.basename(fileURL) + '_Part' + patchIndex + ' sent successfully! ');
+        console.log(basename + '_Part' + patchIndex + ' sent successfully! ');
         // console.log('Server responded with "%s"', info.response);
         transporter.close();
     });

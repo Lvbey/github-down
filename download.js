@@ -9,6 +9,7 @@ const nodemailer = require('nodemailer');
 
 
 let fileURL = 'https://objects.githubusercontent.com/github-production-release-asset-2e65be/997224494/85d47b99-8082-48c6-a607-29db7ce21268?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20250609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250609T041618Z&X-Amz-Expires=300&X-Amz-Signature=37126fb86113ca7717e90f098ce2ba4826b82ee7f3cadb707f5bae467b7c515d&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dsxd-v1.1.2-arm-15526577828.zip&response-content-type=application%2Foctet-stream';
+let basename = 'sxd-v1.1.2-arm-15526577828.zip'
 
 //分割后文件集合
 let attachments = [];
@@ -17,7 +18,7 @@ let perEmailAttachmentMaxCount = 1;
 //每个附件最大大小
 let attachmentMaxSize = 1024 * 1024 * 45;
 //下载保存的文件路径
-let fileSavePath = path.join(__dirname, path.basename(fileURL));
+let fileSavePath = path.join(__dirname, basename);
 //缓存文件路径
 let tmpFileSavePath = fileSavePath + ".tmp";
 //创建写入流
